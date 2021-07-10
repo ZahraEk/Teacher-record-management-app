@@ -25,13 +25,13 @@
                         </a>
 
                         <div class="user-menu dropdown-menu">
-                            <a class="nav-link" href="adminprofile.php"><i class="fa fa-user"></i>   My Profile</a>
+                            <a class="nav-link" href="adminprofile.php"><i class="fa fa-user"></i>  پروفایل من</a>
 
                             
 
-                            <a class="nav-link" href="change-password.php"><i class="fa fa-cog"></i>Change Password</a>
+                            <a class="nav-link" href="change-password.php"><i class="fa fa-cog"></i>تغییر رمز عبور</a>
 
-                            <a class="nav-link" href="logout.php"><i class="fa fa-power-off"></i> Logout</a>
+                            <a class="nav-link" href="logout.php"><i class="fa fa-power-off"></i> خروج</a>
                         </div>
                     </div>
 
