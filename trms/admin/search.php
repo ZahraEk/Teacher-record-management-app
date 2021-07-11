@@ -100,7 +100,7 @@ if(isset($_POST['search']))
 
 $sdata=$_POST['searchdata'];
   ?>
-  <h4 align="center">نتیجه  "<?php echo $sdata;?>" کلید واژه </h4> 
+  <h4 align="center">  "<?php echo $sdata;?>"نتیجه کلید واژه </h4>
 
 
                             <div class="card-body">

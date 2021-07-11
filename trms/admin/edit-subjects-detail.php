@@ -1,54 +1,37 @@
 <?php
 session_start();
-//error_reporting(0);
-include('includes/dbconnection.php');
 error_reporting(0);
+include('includes/dbconnection.php');
 if (strlen($_SESSION['trmsaid']==0)) {
   header('location:logout.php');
   } else{
-if(isset($_POST['submit']))
-{
-$adminid=$_SESSION['trmsaid'];
-$cpassword=md5($_POST['currentpassword']);
-$newpassword=md5($_POST['newpassword']);
-$sql ="SELECT ID FROM tbladmin WHERE ID=:adminid and Password=:cpassword";
-$query= $dbh -> prepare($sql);
-$query-> bindParam(':adminid', $adminid, PDO::PARAM_STR);
-$query-> bindParam(':cpassword', $cpassword, PDO::PARAM_STR);
-$query-> execute();
-$results = $query -> fetchAll(PDO::FETCH_OBJ);
+    if(isset($_POST['submit']))
+  {
+$eid=$_GET['editid'];
+$subjects=$_POST['subjects'];
 
-if($query -> rowCount() > 0)
-{
-$con="update tbladmin set Password=:newpassword where ID=:adminid";
-$chngpwd1 = $dbh->prepare($con);
-$chngpwd1-> bindParam(':adminid', $adminid, PDO::PARAM_STR);
-$chngpwd1-> bindParam(':newpassword', $newpassword, PDO::PARAM_STR);
-$chngpwd1->execute();
+ $sql="update tblsubjects set Subject=:subjects where ID=:eid";
 
-echo '<script>alert("Your password successully changed")</script>';
-} else {
-echo '<script>alert("Your current password is wrong")</script>';
+$query = $dbh->prepare($sql);
+$query->bindParam(':subjects',$subjects,PDO::PARAM_STR);
+$query->bindParam(':eid',$eid,PDO::PARAM_STR);
+    $query->execute();
 
-}
+    echo '<script>alert("عنوان به روزرسانی شد")</script>';
 
-
-
-}
-
-  
+  }
   ?>
 
 <!doctype html>
 <html class="no-js" lang="en">
 
 <head>
-    
-    <title>تغییر رمز عبور</title>
-    
-
+   
+    <title>ویرایش عناوین</title>
+  
     <link rel="apple-touch-icon" href="apple-icon.png">
- 
+  
+
 
     <link rel="stylesheet" href="vendors/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="vendors/font-awesome/css/font-awesome.min.css">
@@ -60,19 +43,7 @@ echo '<script>alert("Your current password is wrong")</script>';
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
-<script type="text/javascript">
-function checkpass()
-{
-if(document.changepassword.newpassword.value!=document.changepassword.confirmpassword.value)
-{
-alert('New Password and Confirm Password field does not match');
-document.changepassword.confirmpassword.focus();
-return false;
-}
-return true;
-}   
 
-</script>
 
 </head>
 
@@ -90,7 +61,7 @@ return true;
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>تغییر رمز عبور</h1>
+                        <h1>ویرایش عناوین</h1>
                     </div>
                 </div>
             </div>
@@ -99,8 +70,8 @@ return true;
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
                             <li><a href="dashboard.php">پیشخوان</a></li>
-                            <li><a href="change-password.php">تغییر رمز عبور</a></li>
-                            <li class="active">تغییر دادن</li>
+                            <li><a href="manage-subjects.php">ویرایش عناوین</a></li>
+                            <li class="active">ویرایش</li>
                         </ol>
                     </div>
                 </div>
@@ -120,22 +91,34 @@ return true;
 
                     <div class="col-lg-12">
                         <div class="card">
-                            <div class="card-header"><strong>تغییر </strong><small> رمز عبور</small></div>
-                 
-                            <form name="changepassword" method="post" onsubmit="return checkpass();" action="">
+                            <div class="card-header"><small>  جزئیات </small><strong>  عناوین </strong></div>
+                            <form name="" method="post" action="">
                                 
                             <div class="card-body card-block">
- 
-                                <div class="form-group"><label for="company" class=" form-control-label">رمز فعلی</label><input type="password" name="currentpassword" id="currentpassword" class="form-control" required=""></div>
-                                    <div class="form-group"><label for="vat" class=" form-control-label">رمز جدید</label><input type="password" name="newpassword"  class="form-control" required=""></div>
-                                        <div class="form-group"><label for="street" class=" form-control-label">تکرار رمز جدید</label><input type="password" name="confirmpassword" id="confirmpassword" value=""  class="form-control"></div>
-                                                                                                
+ <?php
+$eid=$_GET['editid'];
+$sql="SELECT * from  tblsubjects where ID=$eid";
+$query = $dbh -> prepare($sql);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount() > 0)
+{
+foreach($results as $row)
+{               ?>
+                                <div class="form-group"><label for="company" class=" form-control-label">نام عنوان</label><input type="text" name="subjects" value="<?php  echo $row->Subject;?>" class="form-control" id="subjects" required="true"></div>
+                                   
+                                        
+                                            
+                                                    
                                                     </div>
-                                                   
-                                                    <p style="text-align: center;"><button type="submit" class="btn btn-primary btn-sm" name="submit" id="submit">
-                                                            <i class="fa fa-dot-circle-o"></i> تغییر 
+                                                   <?php $cnt=$cnt+1;}} ?> 
+                                                     <div class="card-footer">
+                                                       <p style="text-align: center;"><button type="submit" class="btn btn-primary btn-sm" name="submit" id="submit">
+                                                            <i class="fa fa-dot-circle-o"></i> ویرایش
                                                         </button></p>
-                                                     
+                                                        
+                                                    </div>
                                                 </div>
                                                 </form>
                                             </div>

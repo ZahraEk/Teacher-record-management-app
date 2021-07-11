@@ -49,7 +49,7 @@ th {
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
                         <div class="banner_content text-center">
-                            <h2>اطلاعات استاد</h2>
+                            <h2>اطلاعات اساتید</h2>
                            
                         </div>
                     </div>
@@ -72,7 +72,7 @@ if(isset($_POST['search']))
 
 $sdata=$_POST['searchteacher'];
   ?>
-  <h4 align="center">نتیجه "<?php echo $sdata;?>" موضوع </h4> 
+  <h4 align="center"> "<?php echo $sdata;?>"  نتیجه</h4>
 
 
                             <div class="card-body">
@@ -84,10 +84,10 @@ $sdata=$_POST['searchteacher'];
                   <th>عکس</th>
                   <th>اسم استاد</th>
                   <th>موضوع</th>
-                  <th>ایمیل استاد</th>
-                  <th>شماره همراه استاد</th>
-                  <th>صلاحیت استاد</th>
-                  <th>آدرس استاد</th>       
+                  <th>ایمیل</th>
+                  <th>شماره همراه</th>
+                  <th>مرتبه علمی </th>
+                  <th>آدرس</th>
                   
                 </tr>
                                   

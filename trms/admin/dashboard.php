@@ -89,7 +89,7 @@ $sublist=$query->rowCount();
                         <h4 class="mb-0">
                             <span class="count"><?php echo htmlentities($sublist);?></span>
                         </h4>
-                        <p class="text-light">عناوین مجموع</p>
+                        <p class="text-light">عناوین</p>
 
                         <div class="chart-wrapper px-3" style="height:70px;" height="70">
                             <canvas id="widgetChart4"></canvas>
@@ -109,7 +109,7 @@ $sublist=$query->rowCount();
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                                 <div class="dropdown-menu-content">
-                                    <a class="dropdown-item" href="manage-teacher.php">علیات</a>
+                                    <a class="dropdown-item" href="manage-teacher.php">عملیات</a>
                                     
                                 </div>
                             </div>
@@ -124,7 +124,7 @@ $totalteacher=$query1->rowCount();
                         <h4 class="mb-0">
                             <span class="count"><?php echo htmlentities($totalteacher);?></span>
                         </h4>
-                        <p class="text-light">مجموع اساتید</p>
+                        <p class="text-light">اساتید</p>
 
                         <div class="chart-wrapper px-0" style="height:70px;" height="70">
                             <canvas id="widgetChart2"></canvas>

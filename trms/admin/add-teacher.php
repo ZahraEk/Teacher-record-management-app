@@ -42,12 +42,12 @@ $query->bindParam(':joiningdate',$tdate,PDO::PARAM_STR);
 
    $LastInsertId=$dbh->lastInsertId();
    if ($LastInsertId>0) {
-    echo '<script>alert("Teacher Detail has been added.")</script>';
+    echo '<script>alert("اطلاعات استاد اضافه شد")</script>';
 echo "<script>window.location.href ='add-teacher.php'</script>";
   }
   else
     {
-         echo '<script>alert("Something Went Wrong. Please try again")</script>';
+         echo '<script>alert("مشکلی پیش آمد. لطفا دوباره تلاش کنید")</script>';
     }
 
   
@@ -104,7 +104,7 @@ echo "<script>window.location.href ='add-teacher.php'</script>";
                         <ol class="breadcrumb text-right">
                             <li><a href="dashboard.php">پیشخوان</a></li>
                             <li><a href="add-teacher.php">اطلاعات استاد</a></li>
-                            <li class="active">تاضافه کردن</li>
+                            <li class="active">اضافه کردن</li>
                         </ol>
                     </div>
                 </div>
@@ -124,7 +124,7 @@ echo "<script>window.location.href ='add-teacher.php'</script>";
 
                     <div class="col-lg-12">
                         <div class="card">
-                            <div class="card-header"><strong>استاد </strong><small> اطلاعات</small></div>
+                            <div class="card-header"><small>  اطلاعات </small><strong>  استاد </strong></div>
                             <form name="" method="post" action="" enctype="multipart/form-data">
                                 
                             <div class="card-body card-block">
@@ -132,10 +132,10 @@ echo "<script>window.location.href ='add-teacher.php'</script>";
                                 <div class="form-group"><label for="company" class=" form-control-label">نام استاد</label><input type="text" name="tname" value="" class="form-control" id="tname" required="true"></div>
                                 <div class="form-group"><label for="company" class=" form-control-label">عکس استاد</label><input type="file" name="propic" value="" class="form-control" id="propic" required="true"></div>
                                                                           
-                                        <div class="form-group"><label for="street" class=" form-control-label">ایمیل ا ستاد</label><input type="text" name="email" value="" id="email" class="form-control" required="true"></div>
+                                        <div class="form-group"><label for="street" class=" form-control-label">ایمیل استاد</label><input type="text" name="email" value="" id="email" class="form-control" required="true"></div>
                                             <div class="row form-group">
                                                 <div class="col-12">
-                                                    <div class="form-group"><label for="city" class=" form-control-label">صللاحیت استاد(با کاما جدا شده)</label><input type="text" name="qualifications" id="qualifications" value="" class="form-control" required="true"></div>
+                                                    <div class="form-group"><label for="city" class=" form-control-label">مرتبه علمی</label><input type="text" name="qualifications" id="qualifications" value="" class="form-control" required="true"></div>
                                                     </div>
                                         
                                                     

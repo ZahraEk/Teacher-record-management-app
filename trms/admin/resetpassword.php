@@ -13,7 +13,7 @@ if(isset($_POST['submit']))
         $query=mysqli_query($con,"update tbladmin set Password='$password'  where  Email='$email' && MobileNumber='$contactno' ");
    if($query)
    {
-echo "<script>alert('Password successfully changed');</script>";
+echo "<script>alert('رمز عبور با موفقیت تغییر یافت');</script>";
 session_destroy();
    }
   

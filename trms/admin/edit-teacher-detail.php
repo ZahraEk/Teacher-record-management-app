@@ -103,7 +103,7 @@ $query->bindParam(':eid',$eid,PDO::PARAM_STR);
 
                     <div class="col-lg-12">
                         <div class="card">
-                            <div class="card-header"><strong>استاد</strong><small> اطلاعات</small></div>
+                            <div class="card-header"> اطلاعات استاد</div>
                             <form name="" method="post" action="" enctype="multipart/form-data">
                                 
                             <div class="card-body card-block">
@@ -136,7 +136,7 @@ foreach($results as $row)
 <div class="row form-group">
 <div class="col-12">
 <div class="form-group">
-<label for="city" class=" form-control-label">صلاحیت های استاد (با کاما جدا شده است)</label>
+<label for="city" class=" form-control-label">مرتبه علمی</label>
 <input type="text" name="qualifications" id="qualifications" value="<?php  echo $row->Qualifications;?>" class="form-control" required="true">
 </div>
 </div>

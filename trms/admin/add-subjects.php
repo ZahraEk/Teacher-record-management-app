@@ -7,42 +7,40 @@ if (strlen($_SESSION['trmsaid']==0)) {
   } else{
     if(isset($_POST['submit']))
   {
-$eid=$_GET['editid'];
-$propic=$_FILES["newpic"]["name"];
-$extension = substr($propic,strlen($propic)-4,strlen($propic));
-$allowed_extensions = array(".jpg","jpeg",".png",".gif");
-if(!in_array($extension,$allowed_extensions))
-{
-echo "<script>alert('Profile Pics has Invalid format. Only jpg / jpeg/ png /gif format allowed');</script>";
-}
-else
-{
 
-$propic=md5($propic).time().$extension;
- move_uploaded_file($_FILES["newpic"]["tmp_name"],"images/".$propic);
+$trmsaid=$_SESSION['trmsaid'];
 
- $sql="update tblteacher set Picture=:pic where ID=:eid";
+$subjects=$_POST['subjects'];
 
-$query = $dbh->prepare($sql);
-$query->bindParam(':pic',$propic,PDO::PARAM_STR);
-$query->bindParam(':eid',$eid,PDO::PARAM_STR);
-    $query->execute();
+$sql="insert into tblsubjects(Subject)values(:subjects)";
+$query=$dbh->prepare($sql);
+$query->bindParam(':subjects',$subjects,PDO::PARAM_STR);
+ $query->execute();
 
-    echo '<script>alert("Image has been updated")</script>';
-
+   $LastInsertId=$dbh->lastInsertId();
+   if ($LastInsertId>0) {
+    echo '<script>alert("عنوان اضافه شد")</script>';
+echo "<script>window.location.href ='add-subjects.php'</script>";
   }
+  else
+    {
+         echo '<script>alert("مشکلی پیش آمد. لطفا دوباره تلاش کنید")</script>';
+    }
+
+  
 }
-  ?>
+
+?>
 
 <!doctype html>
 <html class="no-js" lang="en">
 
 <head>
    
-    <title>ویرایش عکس</title>
+    <title>اضافه کردن استاد</title>
   
+
     <link rel="apple-touch-icon" href="apple-icon.png">
-  
 
 
     <link rel="stylesheet" href="vendors/bootstrap/dist/css/bootstrap.min.css">
@@ -73,7 +71,7 @@ $query->bindParam(':eid',$eid,PDO::PARAM_STR);
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>ویرایش عکس</h1>
+                        <h1>جزئیات عناوین</h1>
                     </div>
                 </div>
             </div>
@@ -82,8 +80,8 @@ $query->bindParam(':eid',$eid,PDO::PARAM_STR);
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
                             <li><a href="dashboard.php">پیشخوان</a></li>
-                            <li><a href="manage-teacher.php">ویرایش عکس</a></li>
-                            <li class="active">ویرایش</li>
+                            <li><a href="add-subjects.php">جزئیات عناوین</a></li>
+                            <li class="active">اضافه شدن</li>
                         </ol>
                     </div>
                 </div>
@@ -103,36 +101,16 @@ $query->bindParam(':eid',$eid,PDO::PARAM_STR);
 
                     <div class="col-lg-12">
                         <div class="card">
-                            <div class="card-header"><strong>ویرایش</strong><small> عکس</small></div>
-                            <form name="" method="post" action="" enctype="multipart/form-data">
+                            <div class="card-header"><small>  جزئیات </small><strong>  عناوین </strong></div>
+                            <form name="" method="post" action="">
                                 
                             <div class="card-body card-block">
- <?php
-$eid=$_GET['editid'];
-$sql="SELECT * from  tblteacher where ID=$eid";
-$query = $dbh -> prepare($sql);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$cnt=1;
-if($query->rowCount() > 0)
-{
-foreach($results as $row)
-{               ?>
-                                <div class="form-group"><label for="company" class=" form-control-label">نام استاد</label><input type="text" name="subjects" value="<?php  echo $row->Name;?>" class="form-control" id="subjects" readonly='true'></div>
-                                <div class="form-group"><label for="company" class=" form-control-label">عکس پروفایل</label><img src="images/<?php echo $row->Picture;?>" width="100" height="100" value="<?php  echo $row->Picture;?>"></div>
-                                <div class="form-group"><label for="company" class=" form-control-label">عکس جدید پروفایل</label><input type="file" name="newpic" value="" class="form-control" id="newpic" required='true'></div>
-                                   
-                                        
-                                            
-                                                    
-                                                    </div>
-                                                   <?php $cnt=$cnt+1;}} ?> 
-                                                     <div class="card-footer">
-                                                       <p style="text-align: center;"><button type="submit" class="btn btn-primary btn-sm" name="submit" id="submit">
-                                                            <i class="fa fa-dot-circle-o"></i> ویرایش
+ 
+                                <div class="form-group"><label for="company" class=" form-control-label">نام عنوان</label><input type="text" name="subjects" value="" class="form-control" id="subjects" required="true"></div>
+                                              <p style="text-align: center;"><button type="submit" class="btn btn-primary btn-sm" name="submit" id="submit">
+                                                            <i class="fa fa-dot-circle-o"></i>  اضافه کردن
                                                         </button></p>
-                                                        
-                                                    </div>
+                                                    
                                                 </div>
                                                 </form>
                                             </div>

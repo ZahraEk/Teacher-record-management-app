@@ -33,13 +33,13 @@ include('includes/dbconnection.php');
 					<div class="col-lg-6">
 						<div class="banner_content">
 							<h2>
-								<br>
-									به سیستم مدیریت سوابق اساتید خوش آمدید
+								<br>به سیستم مدیریت سوابق اساتید خوش آمدید
+	
 							</h2>
 				
 							<div class="search_course_wrap">
 <form action="search-teacher.php" class="form_box d-flex justify-content-between w-100" method="post" name="search">
-<input type="text" placeholder="Search by Subject" class="form-control" name="searchteacher">
+<input type="text" placeholder="جستجو با عنوان" class="form-control" name="searchteacher">
 <button type="submit" class="btn search_course_btn" name="search" id="submit">جستجو</button>
 								</form>
 							</div>
