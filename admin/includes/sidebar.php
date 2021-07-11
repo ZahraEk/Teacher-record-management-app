@@ -17,7 +17,7 @@
 <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>عناوین</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-file-o"></i><a href="add-subjects.php">اضافه کردن عنوانs</a></li>
+                            <li><i class="menu-icon fa fa-file-o"></i><a href="add-subjects.php">اضافه کردن عنوان</a></li>
                             <li><i class="menu-icon fa fa-file-o"></i><a href="manage-subjects.php">مدیریت عناوین</a></li>
                         </ul>
                     </li>
